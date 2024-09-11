@@ -125,7 +125,7 @@ export async function fetchFilteredInvoices(
 }
 
 export async function fetchInvoicesPages(query: string) {
-  try {
+  try { //* select count cuenta el numero de filas, en este caso de invoices. luego une/combina filas de dos o más tablas basadas en una condición de coincidencia entre ellas, en este caso el id del cliente (el JOIN es implicito un INNER JOIN). La cláusula ON define la condición de coincidencia para el JOIN, como se unen las tablas en que datos pueden coincidir. El resultado incluirá columnas de ambas tablas. El where funciona en el COUNT(*) porque cuenta donde la query (lo que escribio el user en el front) se asimila al nombre del cliente o al email o .... y eso es lo que cuenta.
     const count = await sql`SELECT COUNT(*)
     FROM invoices
     JOIN customers ON invoices.customer_id = customers.id

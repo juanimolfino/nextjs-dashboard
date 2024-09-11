@@ -12,3 +12,6 @@ To recap, you've done a few things to optimize data fetching in your application
 5 Implemented Streaming to prevent slow data requests from blocking your whole page, and to allow the user to start interacting with the UI without waiting for everything to load.
 
 6 Move data fetching down to the components that need it, thus isolating which parts of your routes should be dynamic.
+
+SERVER ACTIONS:
+React Server Actions allow you to run asynchronous code directly on the server. They eliminate the need to create API endpoints to mutate your data. Instead, you write asynchronous functions that execute on the server and can be invoked from your Client or Server Components.

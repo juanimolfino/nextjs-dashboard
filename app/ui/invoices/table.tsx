@@ -11,7 +11,7 @@ export default async function InvoicesTable({
   query: string;
   currentPage: number;
 }) {
-  const invoices = await fetchFilteredInvoices(query, currentPage);
+  const invoices = await fetchFilteredInvoices(query, currentPage); // With these changes in place, go ahead and test it out. If you search for a term, you'll update the URL, which will send a new request to the server, data will be fetched on the server, and only the invoices that match your query will be returned.
 
   return (
     <div className="mt-6 flow-root">
@@ -27,11 +27,12 @@ export default async function InvoicesTable({
                   <div>
                     <div className="mb-2 flex items-center">
                       <Image
+                      key={`${invoice.id}`}
                         src={invoice.image_url}
                         className="mr-2 rounded-full"
                         width={28}
                         height={28}
-                        alt={`${invoice.name}'s profile picture`}
+                        alt={`${invoice.name}'s profile picture`} /* esto lo podemos eliminar para ver como funciona pnpm lint */
                       />
                       <p>{invoice.name}</p>
                     </div>
@@ -86,6 +87,7 @@ export default async function InvoicesTable({
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
                     <div className="flex items-center gap-3">
                       <Image
+                      key={`${invoice.id}`}
                         src={invoice.image_url}
                         className="rounded-full"
                         width={28}
