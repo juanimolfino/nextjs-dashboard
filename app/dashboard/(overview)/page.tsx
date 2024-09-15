@@ -11,6 +11,12 @@ import CardWrapper from '@/app/ui/dashboard/cards';
 
 import { Suspense } from 'react'; // este envuelve el componente que demora
 import { RevenueChartSkeleton, LatestInvoicesSkeleton, CardsSkeleton } from '@/app/ui/skeletons'; // este da un componente alternativo o fallback para mostrar hasta q cargue
+
+import { Metadata } from 'next'; 
+
+export const metadata: Metadata = {
+    title: 'Dashboard',
+  };
  
 export default async function Page() {
  // const revenue = await fetchRevenue();

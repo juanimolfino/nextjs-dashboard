@@ -16,6 +16,14 @@ import { revalidatePath } from 'next/cache';
 //! re direct to a specific path (server side)
 import { redirect } from 'next/navigation';
 
+// ------ // 
+//* esta parte es para la accion del log in con auth
+// connect the auth logic with your login form. 
+import { signIn } from '@/auth';
+import { AuthError } from 'next-auth';
+
+// ------ // 
+
 const FormSchema = z.object({
     id: z.string(),
     customerId: z.string({
@@ -179,3 +187,26 @@ export async function deleteInvoice(id: string) {
         return { message: 'Database Error: Failed to Delete Invoice.' }; //* en este a diferencia del anterior no hay redirect entonces podemos poner dentro del try
       }    
   }
+
+
+  // ----- //
+//* new action called authenticate. This action should import the signIn function from auth.ts:
+export async function authenticate(
+    prevState: string | undefined,
+    formData: FormData,
+  ) {
+    try {
+      await signIn('credentials', formData);
+    } catch (error) {
+      if (error instanceof AuthError) {
+        switch (error.type) {
+          case 'CredentialsSignin': // If there's a 'CredentialsSignin' error, you want to show an appropriate error message
+            return 'Invalid credentials.';
+          default:
+            return 'Something went wrong.';
+        }
+      }
+      throw error;
+    }
+  }
+  // ----- //

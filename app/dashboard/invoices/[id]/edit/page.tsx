@@ -19,6 +19,12 @@ import { fetchInvoiceById, fetchCustomers } from '@/app/lib/data';
 
 import { notFound } from 'next/navigation'; // Now that you know the invoice doesn't exist in your database, let's use notFound to handle it.
 
+import { Metadata } from 'next'; 
+
+export const metadata: Metadata = {
+    title: 'Invoice Edit',
+  };
+
  
 export default async function Page({ params }: { params: { id: string } }) { // In addition to searchParams, page components also accept a prop called params which you can use to access the id
     const id = params.id;

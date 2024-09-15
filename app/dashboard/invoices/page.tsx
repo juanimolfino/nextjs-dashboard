@@ -27,6 +27,23 @@ import { fetchInvoicesPages } from '@/app/lib/data';
 //* Update the URL with the search params.
 //* Keep the URL in sync with the input field.
 //* Update the table to reflect the search query.
+
+//! metadata
+import { Metadata } from 'next';
+ 
+// export const metadata: Metadata = {
+//   title: 'Invoices | Acme Dashboard',
+// };
+// This works, but we are repeating the title of the application in every page. If something changes, like the company name, you'd have to update it on every page.
+
+// Instead, you can use the title.template field in the metadata object to define a template for your page titles. This template can include the page title, and any other information you want to include.
+
+// In your root layout, update the metadata object to include a template:
+
+export const metadata: Metadata = {
+    title: 'Invoices',
+  };
+//!
  
 export default async function Page({
     searchParams,
